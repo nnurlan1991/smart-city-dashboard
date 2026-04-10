@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City/Region | Выбор версии</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0C10;
+            --bg2: #15161A;
+            --bg3: #1F2028;
+            --border: rgba(255,255,255,0.08);
+            --border2: rgba(255,255,255,0.12);
+            --txt: #ffffff;
+            --txt2: #8f95b2;
+            --primary: #8b5cf6;
+            --primary-hover: #a78bfa;
+            --blue2: #60a5fa;
+            --radius-xl: 24px;
+            --shadow: 0 8px 32px rgba(0,0,0,0.4);
+            --logo-filter: brightness(0) invert(1);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--txt);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(96, 165, 250, 0.08), transparent 25%);
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 2vw;
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .header-logos {
+            margin-bottom: 2vh;
+        }
+
+        .header-logo-img {
+            max-height: 8vh;
+            filter: var(--logo-filter);
+        }
+
+        .header-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: min(5vw, 64px);
+            line-height: 1.1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6vh;
+        }
+
+        .brand-smart {
+            color: var(--txt);
+            letter-spacing: 0.05em;
+        }
+
+        .brand-word-wrap {
+            position: relative;
+            display: inline-block;
+            width: 4.5em;
+            height: 1.1em;
+            overflow: visible;
+        }
+
+        .brand-city, .brand-region {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            line-height: 1.1em;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+        }
+
+        .brand-city { color: var(--blue2); animation: brandCity 6s ease-in-out infinite; }
+        .brand-region { color: var(--primary); animation: brandRegion 6s ease-in-out infinite; }
+
+        @keyframes brandCity {
+            0%, 38% { opacity: 1; filter: blur(0); }
+            48% { opacity: 0; filter: blur(4px); }
+            82% { opacity: 0; filter: blur(3px); }
+            92%, 100% { opacity: 1; filter: blur(0); }
+        }
+
+        @keyframes brandRegion {
+            0%, 38% { opacity: 0; filter: blur(4px); }
+            48%, 82% { opacity: 1; filter: blur(0); }
+            92%, 100% { opacity: 0; filter: blur(3px); }
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5vw;
+            width: 100%;
+            padding: 0 2vw;
+        }
+
+        .card-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 4vh 2vw;
+            text-decoration: none;
+            color: var(--txt);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 7;
+            max-height: 220px;
+        }
+
+        .card-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card-btn.v2::before { background: var(--blue2); }
+        .card-btn.v3::before { background: var(--primary); }
+
+        .card-btn:hover {
+            transform: translateY(-8px);
+            border-color: var(--border2);
+            background: var(--bg3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .card-btn:hover::before { opacity: 1; }
+
+        .card-btn.v2:hover { border-color: rgba(96, 165, 250, 0.4); }
+        .card-btn.v3:hover { border-color: rgba(139, 92, 246, 0.4); }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: min(2vw, 20px);
+            margin-bottom: 8px;
+            color: var(--txt2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-vendor {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: min(4vw, 48px);
+            letter-spacing: -0.02em;
+        }
+
+        .v2 .card-vendor { color: var(--blue2); }
+        .v3 .card-vendor { color: var(--primary); }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            body { overflow-y: auto; height: auto; min-height: 100vh; }
+            .container { padding: 10vw 5vw; justify-content: flex-start; height: auto; }
+            .header-logo-img { max-height: 48px; }
+            .header-brand { font-size: 36px; margin-bottom: 40px; margin-top: 10px; }
+            .brand-word-wrap { width: 170px; height: 40px; }
+            .brand-city, .brand-region { font-size: 36px; line-height: 40px; }
+            
+            .options-grid { grid-template-columns: 1fr; gap: 20px; padding: 0; width: 100%; }
+            .card-btn {
+                aspect-ratio: auto;
+                padding: 40px 20px;
+                max-height: none;
+            }
+            .card-title { font-size: 16px; margin-bottom: 12px; }
+            .card-vendor { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-logos">
+        <img src="ЛОГО/миицр/ai_digital_1.png" alt="МИЦРИАП" class="header-logo-img">
+    </div>
+
+    <div class="header-brand">
+        <span class="brand-smart">SMART</span>
+        <div class="brand-word-wrap">
+            <span class="brand-city">CITY</span>
+            <span class="brand-region">REGION</span>
+        </div>
+    </div>
+
+    <div class="options-grid">
+        <a href="v2.html" class="card-btn v2">
+            <div class="card-title">Версия 2</div>
+            <div class="card-vendor">Anthropic</div>
+        </a>
+
+        <a href="v3.html" class="card-btn v3">
+            <div class="card-title">Версия 3</div>
+            <div class="card-vendor">Google</div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
